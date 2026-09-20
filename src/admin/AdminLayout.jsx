@@ -26,15 +26,15 @@ const Sidebar = ({ open, onClose }) => {
 
       {/* Sidebar panel */}
       <aside
-        className={`fixed top-0 left-0 h-full w-56 bg-gray-900 flex flex-col z-30 transition-transform duration-200
+        className={`fixed top-0 left-0 h-full w-56 bg-bg-primary flex flex-col z-30 transition-transform duration-200
           ${open ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0`}
       >
-        <div className="px-5 py-5 border-b border-gray-800 flex items-center justify-between">
+        <div className="px-5 py-5 border-b border-border-default flex items-center justify-between">
           <div>
-            <p className="text-white font-bold">musaj.space</p>
-            <p className="text-gray-500 text-xs mt-0.5">Admin</p>
+            <p className="text-text-primary font-bold">musaj.space</p>
+            <p className="text-text-muted text-xs mt-0.5">Admin</p>
           </div>
-          <button onClick={onClose} className="md:hidden text-gray-500 hover:text-white transition">
+          <button onClick={onClose} className="md:hidden text-text-muted hover:text-text-primary transition">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -48,7 +48,7 @@ const Sidebar = ({ open, onClose }) => {
               onClick={onClose}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition ${
-                  isActive ? 'bg-brand text-white' : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                  isActive ? 'bg-accent-pink text-text-primary' : 'text-text-muted hover:text-text-primary hover:bg-bg-elevated'
                 }`
               }
             >
@@ -58,19 +58,19 @@ const Sidebar = ({ open, onClose }) => {
           ))}
         </nav>
 
-        <div className="px-3 py-4 border-t border-gray-800 space-y-0.5">
+        <div className="px-3 py-4 border-t border-border-default space-y-0.5">
           <a
             href="/"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-white hover:bg-gray-800 transition"
+            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-text-muted hover:text-text-primary hover:bg-bg-elevated transition"
           >
             <ExternalLink className="w-4 h-4" />
             View Site
           </a>
           <button
             onClick={() => { logout(); navigate('/my-admin'); }}
-            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-gray-400 hover:text-red-400 hover:bg-gray-800 transition"
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm text-text-muted hover:text-accent-pink hover:bg-bg-elevated transition"
           >
             <LogOut className="w-4 h-4" />
             Logout
@@ -85,19 +85,19 @@ const AdminLayout = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-bg-tertiary">
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       <div className="flex-1 flex flex-col md:ml-56 min-w-0">
         {/* Mobile top bar */}
-        <header className="md:hidden flex items-center gap-3 px-4 py-3 bg-white border-b border-gray-100 sticky top-0 z-10">
+        <header className="md:hidden flex items-center gap-3 px-4 py-3 bg-bg-elevated border-b border-border-default sticky top-0 z-10">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="text-gray-600 hover:text-gray-900 transition"
+            className="text-text-secondary hover:text-text-primary transition"
           >
             <Menu className="w-5 h-5" />
           </button>
-          <span className="font-bold text-gray-900">musaj.space</span>
+          <span className="font-bold text-text-primary">musaj.space</span>
         </header>
 
         <main className="flex-1 p-4 md:p-8">

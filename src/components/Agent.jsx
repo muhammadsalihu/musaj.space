@@ -20,7 +20,7 @@ const Agent = () => {
     {
       id: 1,
       name: "ResearchGPT",
-      icon: <Brain className="w-12 h-12 text-red-600" />,
+      icon: <Brain className="w-12 h-12 text-accent-pink" />,
       description: "AI-powered research paper analysis and summary",
       price: "$10/paper",
       features: [
@@ -33,7 +33,7 @@ const Agent = () => {
     {
       id: 2,
       name: "CodeOptimizer",
-      icon: <Code className="w-12 h-12 text-red-600" />,
+      icon: <Code className="w-12 h-12 text-accent-pink" />,
       description: "Performance optimization for research code",
       price: "$50/review",
       features: [
@@ -46,7 +46,7 @@ const Agent = () => {
     {
       id: 3,
       name: "DataScientist",
-      icon: <Database className="w-12 h-12 text-red-600" />,
+      icon: <Database className="w-12 h-12 text-accent-pink" />,
       description: "Automated data analysis and visualization",
       price: "$30/dataset",
       features: [
@@ -76,38 +76,38 @@ const Agent = () => {
   };
 
   const PaymentForm = () => (
-    <div className="bg-gray-900 p-6 rounded-lg">
-      <h3 className="text-xl font-bold mb-4">Payment Details</h3>
+    <div className="bg-bg-elevated p-6 rounded-card border border-border-default">
+      <h3 className="text-xl font-bold mb-4 text-text-primary">Payment Details</h3>
       <div className="space-y-4">
         <div>
-          <label className="block text-sm mb-2">Card Number</label>
+          <label className="block text-sm mb-2 text-text-secondary">Card Number</label>
           <input 
             type="text" 
-            className="w-full bg-black border border-gray-800 rounded p-2"
+            className="w-full bg-bg-tertiary border border-border-default rounded-xl p-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
             placeholder="4242 4242 4242 4242"
           />
         </div>
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm mb-2">Expiry Date</label>
+            <label className="block text-sm mb-2 text-text-secondary">Expiry Date</label>
             <input 
               type="text" 
-              className="w-full bg-black border border-gray-800 rounded p-2"
+              className="w-full bg-bg-tertiary border border-border-default rounded-xl p-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
               placeholder="MM/YY"
             />
           </div>
           <div>
-            <label className="block text-sm mb-2">CVC</label>
+            <label className="block text-sm mb-2 text-text-secondary">CVC</label>
             <input 
               type="text" 
-              className="w-full bg-black border border-gray-800 rounded p-2"
+              className="w-full bg-bg-tertiary border border-border-default rounded-xl p-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
               placeholder="123"
             />
           </div>
         </div>
         <button 
           onClick={() => setStep('processing')}
-          className="w-full bg-red-600 py-3 rounded-lg hover:bg-red-700 transition flex items-center justify-center"
+          className="w-full bg-accent-pink py-3 rounded-xl hover:opacity-90 transition flex items-center justify-center text-white font-semibold"
         >
           <CreditCard className="w-4 h-4 mr-2" />
           Pay {selectedAgent?.price}
@@ -117,14 +117,14 @@ const Agent = () => {
   );
 
   const ChatInterface = () => (
-    <div className="bg-gray-900 rounded-lg h-96 flex flex-col">
+    <div className="bg-bg-elevated rounded-card h-96 flex flex-col border border-border-default">
       <div className="flex-1 p-4 overflow-y-auto">
         {messages.map((message, index) => (
           <div key={index} className={`mb-4 ${message.type === 'user' ? 'text-right' : ''}`}>
-            <div className={`inline-block p-3 rounded-lg ${
+            <div className={`inline-block p-3 rounded-2xl ${
               message.type === 'user' 
-                ? 'bg-red-600 text-white' 
-                : 'bg-gray-800 text-gray-200'
+                ? 'bg-accent-pink text-white rounded-br-sm' 
+                : 'bg-bg-tertiary text-text-primary rounded-bl-sm'
             }`}>
               {message.content}
             </div>
@@ -132,17 +132,17 @@ const Agent = () => {
         ))}
         {loading && (
           <div className="flex items-center justify-center">
-            <Loader className="w-6 h-6 text-red-600 animate-spin" />
+            <Loader className="w-6 h-6 text-accent-pink animate-spin" />
           </div>
         )}
       </div>
-      <div className="p-4 border-t border-gray-800">
+      <div className="p-4 border-t border-border-default">
         <div className="flex gap-2">
           <input
             type="text"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
-            className="flex-1 bg-black border border-gray-800 rounded p-2"
+            className="flex-1 bg-bg-tertiary border border-border-default rounded-xl p-2 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
             placeholder="Type your message..."
           />
           <button
@@ -152,7 +152,7 @@ const Agent = () => {
                 setInputText('');
               }
             }}
-            className="bg-red-600 px-4 py-2 rounded hover:bg-red-700 transition"
+            className="bg-accent-pink px-4 py-2 rounded-xl hover:opacity-90 transition text-white"
           >
             Send
           </button>
@@ -169,7 +169,7 @@ const Agent = () => {
             {agents.map((agent) => (
               <div 
                 key={agent.id}
-                className="bg-gray-900 p-6 rounded-lg border border-gray-800 hover:border-red-600 cursor-pointer transition"
+                className="bg-bg-elevated p-6 rounded-card border border-border-default hover:border-accent-pink/30 cursor-pointer transition"
                 onClick={() => {
                   setSelectedAgent(agent);
                   setStep('details');
@@ -178,10 +178,10 @@ const Agent = () => {
                 <div className="mb-4">
                   {agent.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-2">{agent.name}</h3>
-                <p className="text-gray-400 mb-4">{agent.description}</p>
-                <div className="text-red-600 font-bold mb-4">{agent.price}</div>
-                <button className="w-full bg-red-600 py-2 rounded-lg hover:bg-red-700 transition">
+                <h3 className="text-xl font-bold mb-2 text-text-primary">{agent.name}</h3>
+                <p className="text-text-secondary mb-4">{agent.description}</p>
+                <div className="text-accent-pink font-bold mb-4">{agent.price}</div>
+                <button className="w-full bg-accent-pink py-2 rounded-xl hover:opacity-90 transition text-white font-semibold">
                   Hire Agent
                 </button>
               </div>
@@ -191,10 +191,10 @@ const Agent = () => {
 
       case 'details':
         return (
-          <div className="bg-gray-900 p-6 rounded-lg">
+          <div className="bg-bg-elevated p-6 rounded-card border border-border-default">
             <button 
               onClick={() => setStep('browse')}
-              className="text-gray-400 hover:text-white mb-4 flex items-center"
+              className="text-text-muted hover:text-text-primary mb-4 flex items-center transition"
             >
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back to Agents
@@ -204,28 +204,28 @@ const Agent = () => {
                 <div className="flex items-center gap-4 mb-6">
                   {selectedAgent?.icon}
                   <div>
-                    <h2 className="text-2xl font-bold">{selectedAgent?.name}</h2>
-                    <p className="text-gray-400">{selectedAgent?.description}</p>
+                    <h2 className="text-2xl font-bold text-text-primary">{selectedAgent?.name}</h2>
+                    <p className="text-text-secondary">{selectedAgent?.description}</p>
                   </div>
                 </div>
                 <div className="mb-6">
-                  <h3 className="text-lg font-bold mb-2">Features</h3>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">Features</h3>
                   <ul className="space-y-2">
                     {selectedAgent?.features.map((feature, index) => (
-                      <li key={index} className="flex items-center text-gray-300">
-                        <Check className="w-4 h-4 text-red-600 mr-2" />
+                      <li key={index} className="flex items-center text-text-secondary">
+                        <Check className="w-4 h-4 text-accent-pink mr-2" />
                         {feature}
                       </li>
                     ))}
                   </ul>
                 </div>
                 <div className="mb-6">
-                  <h3 className="text-lg font-bold mb-2">Example Interaction</h3>
-                  <p className="text-gray-400">{selectedAgent?.example}</p>
+                  <h3 className="text-lg font-bold mb-2 text-text-primary">Example Interaction</h3>
+                  <p className="text-text-secondary">{selectedAgent?.example}</p>
                 </div>
                 <button 
                   onClick={() => setStep('payment')}
-                  className="w-full bg-red-600 py-3 rounded-lg hover:bg-red-700 transition"
+                  className="w-full bg-accent-pink py-3 rounded-xl hover:opacity-90 transition text-white font-semibold"
                 >
                   Proceed to Payment
                 </button>
@@ -239,10 +239,10 @@ const Agent = () => {
 
       case 'processing':
         return (
-          <div className="bg-gray-900 p-6 rounded-lg text-center">
-            <Loader className="w-12 h-12 text-red-600 animate-spin mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2">Processing Payment</h3>
-            <p className="text-gray-400">Please wait while we process your payment...</p>
+          <div className="bg-bg-elevated p-6 rounded-card text-center border border-border-default">
+            <Loader className="w-12 h-12 text-accent-pink animate-spin mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2 text-text-primary">Processing Payment</h3>
+            <p className="text-text-secondary">Please wait while we process your payment...</p>
             {setTimeout(() => setStep('complete'), 3000)}
           </div>
         );
@@ -250,15 +250,15 @@ const Agent = () => {
       case 'complete':
         return (
           <div className="space-y-6">
-            <div className="bg-gray-900 p-6 rounded-lg text-center">
-              <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+            <div className="bg-bg-elevated p-6 rounded-card text-center border border-border-default">
+              <div className="w-12 h-12 bg-accent-pink rounded-full flex items-center justify-center mx-auto mb-4">
                 <Check className="w-6 h-6 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-2">Payment Successful!</h3>
-              <p className="text-gray-400 mb-4">You can now start working with your agent.</p>
+              <h3 className="text-xl font-bold mb-2 text-text-primary">Payment Successful!</h3>
+              <p className="text-text-secondary mb-4">You can now start working with your agent.</p>
               <button 
                 onClick={() => setStep('chat')}
-                className="bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition"
+                className="bg-accent-pink px-6 py-2 rounded-xl hover:opacity-90 transition text-white font-semibold"
               >
                 Start Chat
               </button>
@@ -276,20 +276,20 @@ const Agent = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black text-white">
+      <div className="min-h-screen bg-bg-primary text-text-primary">
         {/* Header */}
-        <header className="bg-gradient-to-r from-black via-gray-900 to-red-900 p-6">
+        <header className="bg-bg-secondary border-b border-border-default p-6">
           <div className="max-w-7xl mx-auto">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
-                <button onClick={() => navigate('/')} className="text-gray-400 hover:text-white mr-6 flex items-center">
+                <button onClick={() => navigate('/')} className="text-text-muted hover:text-text-primary mr-6 flex items-center transition">
                   <ArrowLeft className="w-4 h-4 mr-2" />
                   Back to Home
                 </button>
-                <Bot className="w-8 h-8 text-red-600 mr-2" />
+                <Bot className="w-8 h-8 text-accent-pink mr-2" />
                 <span className="text-xl font-bold">Agent Musaj</span>
               </div>
-              <button className="bg-red-600 px-4 py-2 rounded-lg">
+              <button className="bg-accent-pink px-4 py-2 rounded-xl text-white font-semibold hover:opacity-90 transition">
                 Connect Wallet
               </button>
             </div>
@@ -300,20 +300,20 @@ const Agent = () => {
         <main className="max-w-7xl mx-auto p-6">
           {step === 'browse' && (
             <div className="mb-12 text-center">
-              <h1 className="text-4xl font-bold mb-4">AI <span className="text-red-600">Agents</span> Marketplace</h1>
-              <p className="text-gray-400 max-w-2xl mx-auto">
-                Specialized AI agents trained to help with your Python development, data science, and research needs.
+              <h1 className="font-display text-5xl md:text-7xl mb-4 leading-[0.9]">AI <span className="text-accent-pink">Agents</span> Marketplace</h1>
+              <p className="text-text-secondary max-w-2xl mx-auto text-lg">
+                Specialized AI agents trained to help with your development, data science, and research needs.
               </p>
             </div>
           )}
           
           {step === 'browse' && (
             <div className="relative mb-8 max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-3 text-gray-400" />
+              <Search className="absolute left-4 top-3 text-text-muted" />
               <input 
                 type="text"
                 placeholder="What kind of agent do you need?"
-                className="w-full bg-gray-900 border border-gray-800 rounded-lg py-3 px-12 focus:border-red-600 transition"
+                className="w-full bg-bg-elevated border border-border-default rounded-xl py-3 px-12 text-text-primary focus:border-accent-pink transition focus:outline-none focus:ring-2 focus:ring-accent-pink/50"
               />
             </div>
           )}
@@ -324,40 +324,40 @@ const Agent = () => {
 
           {step === 'browse' && (
             <div className="mt-16 grid md:grid-cols-3 gap-6">
-              <div className="bg-gray-900 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-red-600">2,431</div>
-                <div className="text-gray-400">Tasks Completed</div>
+              <div className="bg-bg-elevated p-6 rounded-card border border-border-default">
+                <div className="text-3xl font-bold text-accent-pink">2,431</div>
+                <div className="text-text-secondary">Tasks Completed</div>
               </div>
-              <div className="bg-gray-900 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-red-600">98%</div>
-                <div className="text-gray-400">Success Rate</div>
+              <div className="bg-bg-elevated p-6 rounded-card border border-border-default">
+                <div className="text-3xl font-bold text-accent-pink">98%</div>
+                <div className="text-text-secondary">Success Rate</div>
               </div>
-              <div className="bg-gray-900 p-6 rounded-lg">
-                <div className="text-3xl font-bold text-red-600">1.2s</div>
-                <div className="text-gray-400">Avg Response Time</div>
+              <div className="bg-bg-elevated p-6 rounded-card border border-border-default">
+                <div className="text-3xl font-bold text-accent-pink">1.2s</div>
+                <div className="text-text-secondary">Avg Response Time</div>
               </div>
             </div>
           )}
           
           {step === 'browse' && (
-            <div className="mt-20 bg-gradient-to-r from-black to-red-900 p-8 rounded-lg">
+            <div className="mt-20 bg-gradient-to-r from-bg-secondary to-bg-tertiary p-8 rounded-card border border-border-default">
               <div className="max-w-4xl mx-auto">
                 <div className="flex flex-col md:flex-row items-center justify-between gap-8">
                   <div className="md:w-2/3">
                     <h2 className="text-2xl font-bold mb-4">Build Your Own Custom Agent</h2>
-                    <p className="text-gray-300 mb-4">
+                    <p className="text-text-secondary mb-4">
                       Need a specialized AI agent tailored to your unique requirements? Contact me to discuss building a custom solution for your business or research needs.
                     </p>
                     <button 
                       onClick={() => navigate('/contact')}
-                      className="bg-red-600 px-6 py-3 rounded-lg hover:bg-red-700 transition"
+                      className="bg-accent-pink px-6 py-3 rounded-xl hover:opacity-90 transition text-white font-semibold"
                     >
                       Get in Touch
                     </button>
                   </div>
                   <div className="md:w-1/3">
-                    <div className="bg-black p-4 rounded-lg">
-                      <Brain className="w-24 h-24 text-red-600 mx-auto" />
+                    <div className="bg-bg-elevated p-4 rounded-card border border-border-default">
+                      <Brain className="w-24 h-24 text-accent-pink mx-auto" />
                     </div>
                   </div>
                 </div>

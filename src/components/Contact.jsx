@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, ArrowLeft } from 'lucide-react';
+import { Send, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
@@ -22,12 +22,10 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       
-      // Reset form after successful submission
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: '', email: '', message: '' });
@@ -37,35 +35,33 @@ const Contact = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-900 py-20">
+      <div className="min-h-screen bg-bg-primary py-20">
         <div className="max-w-7xl mx-auto px-4">
           <button 
             onClick={() => navigate('/')}
-            className="mb-8 text-blue-600 flex items-center hover:text-blue-500 transition"
+            className="mb-8 text-accent-pink flex items-center hover:opacity-80 transition font-medium"
           >
-            <ArrowLeft className="mr-2" /> Back to Home
+            <ArrowLeft className="mr-2 w-5 h-5" /> Back to Home
           </button>
           
-          <h1 className="text-4xl font-bold text-white mb-8">
-            Let's Work <span className="text-blue-600">Together</span>
+          <h1 className="font-display text-5xl md:text-7xl text-text-primary mb-8 leading-[0.9]">
+            Let's Build <span className="text-accent-pink">Together</span>
           </h1>
           
           <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-gray-800 rounded-lg p-8 border border-gray-700">
+            <div className="bg-bg-elevated border border-border-default rounded-card p-8">
               {isSubmitted ? (
                 <div className="text-center py-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-600 mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent-lime/20 mb-4">
+                    <CheckCircle2 className="w-8 h-8 text-accent-lime" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">Message Sent!</h3>
-                  <p className="text-gray-400">Thanks for reaching out. I'll get back to you soon.</p>
+                  <h3 className="text-2xl font-bold text-text-primary mb-2">Message Sent!</h3>
+                  <p className="text-text-secondary">Thanks for reaching out. I'll get back to you within 24 hours.</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit}>
                   <div className="mb-6">
-                    <label htmlFor="name" className="block text-gray-300 mb-2">Your Name</label>
+                    <label htmlFor="name" className="block text-text-secondary mb-2 text-sm font-medium">Your Name</label>
                     <input
                       type="text"
                       id="name"
@@ -73,12 +69,12 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full bg-bg-tertiary border border-border-default rounded-xl py-3 px-4 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50 focus:border-accent-pink transition placeholder:text-text-muted"
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="email" className="block text-gray-300 mb-2">Your Email</label>
+                    <label htmlFor="email" className="block text-text-secondary mb-2 text-sm font-medium">Your Email</label>
                     <input
                       type="email"
                       id="email"
@@ -86,12 +82,12 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-600"
+                      className="w-full bg-bg-tertiary border border-border-default rounded-xl py-3 px-4 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50 focus:border-accent-pink transition placeholder:text-text-muted"
                     />
                   </div>
                   
                   <div className="mb-6">
-                    <label htmlFor="message" className="block text-gray-300 mb-2">Your Message</label>
+                    <label htmlFor="message" className="block text-text-secondary mb-2 text-sm font-medium">Your Message</label>
                     <textarea
                       id="message"
                       name="message"
@@ -99,14 +95,14 @@ const Contact = () => {
                       value={formData.message}
                       onChange={handleChange}
                       required
-                      className="w-full bg-gray-700 border border-gray-600 rounded-lg py-3 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-600 resize-none"
+                      className="w-full bg-bg-tertiary border border-border-default rounded-xl py-3 px-4 text-text-primary focus:outline-none focus:ring-2 focus:ring-accent-pink/50 focus:border-accent-pink transition resize-none placeholder:text-text-muted"
                     ></textarea>
                   </div>
                   
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className={`w-full bg-blue-600 text-white py-4 rounded-lg font-medium flex items-center justify-center hover:bg-blue-700 transition ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    className={`w-full bg-accent-pink text-white py-4 rounded-full font-semibold flex items-center justify-center hover:opacity-90 transition text-base ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                   >
                     {isSubmitting ? (
                       <>
@@ -118,7 +114,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        Send Message <Send className="ml-2" />
+                        Send Message <Send className="ml-2 w-4 h-4" />
                       </>
                     )}
                   </button>
@@ -127,54 +123,59 @@ const Contact = () => {
             </div>
             
             <div className="space-y-6">
-              <div className="bg-gray-800 p-8 rounded-lg border border-gray-700 h-full">
-                <h3 className="text-2xl font-bold text-white mb-4">Contact Information</h3>
-                <p className="text-gray-400 mb-6">
-                  Feel free to reach out with any questions about my services, availability, or if you have a project in mind.
+              <div className="bg-bg-elevated border border-border-default rounded-card p-8 h-full">
+                <h3 className="text-2xl font-bold text-text-primary mb-4">Contact Information</h3>
+                <p className="text-text-secondary mb-6">
+                  Have a project in mind? Want to collaborate? Just hit me up — I respond within 24 hours.
                 </p>
                 
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Email</h4>
-                    <p className="text-blue-600">contact@musaj.xyz</p>
+                    <h4 className="text-lg font-semibold text-text-primary mb-2">Email</h4>
+                    <p className="text-accent-pink">contact@musaj.space</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Location</h4>
-                    <p className="text-gray-400">New York, USA</p>
+                    <h4 className="text-lg font-semibold text-text-primary mb-2">Location</h4>
+                    <p className="text-text-secondary">Lagos, Nigeria</p>
                   </div>
                   
                   <div>
-                    <h4 className="text-lg font-semibold text-white mb-2">Availability</h4>
-                    <p className="text-gray-400">Mon-Fri: 9am-5pm EST</p>
+                    <h4 className="text-lg font-semibold text-text-primary mb-2">Availability</h4>
+                    <p className="text-text-secondary">Open for freelance & full-time roles</p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-lg font-semibold text-text-primary mb-2">What I Do</h4>
+                    <p className="text-text-secondary">React Native • AI Agents • Backend • LiveKit • Firebase</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="mt-16 bg-gray-800 rounded-lg p-8 border border-gray-700">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">Frequently Asked Questions</h3>
+          <div className="mt-16 bg-bg-elevated border border-border-default rounded-card p-8">
+            <h3 className="text-2xl font-bold text-text-primary mb-6 text-center">Frequently Asked Questions</h3>
             
             <div className="grid md:grid-cols-2 gap-8">
               <div>
-                <h4 className="text-lg font-semibold text-white mb-2">What services do you offer?</h4>
-                <p className="text-gray-400">I specialize in Python development, particularly Django backends, ML models with PyTorch, and custom Python solutions for various business needs.</p>
+                <h4 className="text-lg font-semibold text-text-primary mb-2">What services do you offer?</h4>
+                <p className="text-text-secondary">I specialize in React Native mobile apps, AI agent development (Claude API, Azure), backend microservices, and real-time platforms with LiveKit.</p>
               </div>
               
               <div>
-                <h4 className="text-lg font-semibold text-white mb-2">What is your typical turnaround time?</h4>
-                <p className="text-gray-400">Depending on project complexity, most backend services take 2-4 weeks, while ML model development ranges from 1-3 weeks.</p>
+                <h4 className="text-lg font-semibold text-text-primary mb-2">What is your typical turnaround time?</h4>
+                <p className="text-text-secondary">Most MVPs ship in 3-4 weeks. Enterprise projects range 6-12 weeks depending on scope. I always give honest estimates.</p>
               </div>
               
               <div>
-                <h4 className="text-lg font-semibold text-white mb-2">Do you offer ongoing maintenance?</h4>
-                <p className="text-gray-400">Yes, I provide maintenance packages for all completed projects to ensure everything continues to run smoothly.</p>
+                <h4 className="text-lg font-semibold text-text-primary mb-2">Do you offer ongoing maintenance?</h4>
+                <p className="text-text-secondary">Yes — I offer retainer packages for bug fixes, feature additions, and monitoring after launch. Never ghost my clients.</p>
               </div>
               
               <div>
-                <h4 className="text-lg font-semibold text-white mb-2">How do we get started?</h4>
-                <p className="text-gray-400">Send me a message through this form with your project details, and I'll get back to you within 24 hours to discuss next steps.</p>
+                <h4 className="text-lg font-semibold text-text-primary mb-2">How do we get started?</h4>
+                <p className="text-text-secondary">Send me a message with your project details. I'll respond within 24 hours with a free 30-min consultation call to scope it out.</p>
               </div>
             </div>
           </div>

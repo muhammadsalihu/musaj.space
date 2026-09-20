@@ -3,15 +3,15 @@ import { useAdmin } from '../AdminContext';
 import { FolderKanban, FileText, Bot, Globe } from 'lucide-react';
 
 const StatCard = ({ label, value, icon: Icon, sub }) => (
-  <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+  <div className="bg-bg-elevated rounded-xl p-6 shadow-sm border border-border-default">
     <div className="flex items-center justify-between mb-4">
-      <span className="text-sm font-medium text-gray-500">{label}</span>
-      <div className="bg-brand-light p-2 rounded-lg">
-        <Icon className="w-4 h-4 text-brand" />
+      <span className="text-sm font-medium text-text-muted">{label}</span>
+      <div className="bg-accent-pink/10 p-2 rounded-lg">
+        <Icon className="w-4 h-4 text-accent-pink" />
       </div>
     </div>
-    <div className="text-3xl font-bold text-gray-900">{value}</div>
-    {sub && <p className="text-xs text-gray-400 mt-1">{sub}</p>}
+    <div className="text-3xl font-bold text-text-primary">{value}</div>
+    {sub && <p className="text-xs text-text-muted mt-1">{sub}</p>}
   </div>
 );
 
@@ -22,8 +22,8 @@ const Overview = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-gray-900 mb-1">Overview</h2>
-      <p className="text-gray-400 text-sm mb-8">Your site at a glance.</p>
+      <h2 className="text-2xl font-bold text-text-primary mb-1">Overview</h2>
+      <p className="text-text-muted text-sm mb-8">Your site at a glance.</p>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 mb-8">
         <StatCard label="Projects" value={projects.length} icon={FolderKanban} sub="listed on site" />
@@ -33,18 +33,18 @@ const Overview = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <h3 className="font-semibold text-gray-900 mb-4">Recent Blog Posts</h3>
+        <div className="bg-bg-elevated rounded-xl p-6 shadow-sm border border-border-default">
+          <h3 className="font-semibold text-text-primary mb-4">Recent Blog Posts</h3>
           {blog.length === 0 ? (
-            <p className="text-sm text-gray-400">No posts yet — create your first article in Blog.</p>
+            <p className="text-sm text-text-muted">No posts yet — create your first article in Blog.</p>
           ) : (
             <ul className="space-y-3">
               {blog.slice(0, 5).map((post) => (
                 <li key={post.id} className="flex items-center gap-3">
-                  <span className="text-sm text-gray-700 truncate flex-1">{post.title}</span>
+                  <span className="text-sm text-text-primary truncate flex-1">{post.title}</span>
                   <span
                     className={`text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${
-                      post.published ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
+                      post.published ? 'bg-accent-lime/10 text-accent-lime' : 'bg-bg-tertiary text-text-muted'
                     }`}
                   >
                     {post.published ? 'Published' : 'Draft'}
@@ -55,19 +55,19 @@ const Overview = () => {
           )}
         </div>
 
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
-          <h3 className="font-semibold text-gray-900 mb-4">Deployed Agents</h3>
+        <div className="bg-bg-elevated rounded-xl p-6 shadow-sm border border-border-default">
+          <h3 className="font-semibold text-text-primary mb-4">Deployed Agents</h3>
           {deployed === 0 ? (
-            <p className="text-sm text-gray-400">No agents deployed — create one in Agents.</p>
+            <p className="text-sm text-text-muted">No agents deployed — create one in Agents.</p>
           ) : (
             <ul className="space-y-3">
               {agents
                 .filter((a) => a.deployed)
                 .map((agent) => (
                   <li key={agent.id} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0" />
-                    <span className="text-sm text-gray-700 flex-1">{agent.name}</span>
-                    <span className="text-xs text-gray-400 font-mono">{agent.model}</span>
+                    <div className="w-2 h-2 bg-accent-lime rounded-full flex-shrink-0" />
+                    <span className="text-sm text-text-primary flex-1">{agent.name}</span>
+                    <span className="text-xs text-text-muted font-mono">{agent.model}</span>
                   </li>
                 ))}
             </ul>

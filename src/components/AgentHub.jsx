@@ -14,20 +14,20 @@ const getDeployedAgents = () => {
 const AgentCard = ({ icon, title, description, tag, onClick, badge }) => (
   <button
     onClick={onClick}
-    className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:border-brand/30 hover:shadow-md transition group text-left flex flex-col w-full"
+    className="bg-bg-elevated rounded-card p-6 border border-border-default hover:border-accent-pink/30 hover:shadow-md transition group text-left flex flex-col w-full"
   >
     <div className="flex items-start justify-between mb-4">
-      <div className="bg-brand-light p-3 rounded-xl">{icon}</div>
+      <div className="bg-accent-pink/10 p-3 rounded-xl">{icon}</div>
       {badge && (
-        <span className="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-full">{badge}</span>
+        <span className="text-xs font-semibold bg-accent-lime/10 text-accent-lime px-2 py-1 rounded-full">{badge}</span>
       )}
     </div>
     {tag && (
-      <span className="text-xs font-semibold text-brand bg-brand-light px-2 py-1 rounded-full w-fit mb-3">{tag}</span>
+      <span className="text-xs font-semibold text-accent-pink bg-accent-pink/10 px-2 py-1 rounded-full w-fit mb-3">{tag}</span>
     )}
-    <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-brand transition">{title}</h3>
-    <p className="text-gray-500 text-sm flex-1">{description}</p>
-    <div className="flex items-center gap-1 mt-4 text-brand text-sm font-medium">
+    <h3 className="text-lg font-bold text-text-primary mb-2 group-hover:text-accent-pink transition">{title}</h3>
+    <p className="text-text-muted text-sm flex-1">{description}</p>
+    <div className="flex items-center gap-1 mt-4 text-accent-pink text-sm font-medium">
       Open <ArrowRight className="w-4 h-4" />
     </div>
   </button>
@@ -39,23 +39,23 @@ const AgentHub = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-surface">
+      <div className="min-h-screen bg-bg-tertiary">
         {/* Header */}
-        <div className="bg-white border-b border-gray-100 px-4 py-5">
+        <div className="bg-bg-elevated border-b border-border-default px-4 py-5">
           <div className="max-w-5xl mx-auto">
             <button
               onClick={() => navigate('/')}
-              className="text-brand text-sm font-medium hover:opacity-80 transition mb-4 flex items-center gap-1"
+              className="text-accent-pink text-sm font-medium hover:opacity-80 transition mb-4 flex items-center gap-1"
             >
               ← Home
             </button>
             <div className="flex items-center gap-3">
-              <div className="bg-brand p-2 rounded-xl">
-                <Bot className="w-5 h-5 text-white" />
+              <div className="bg-accent-pink p-2 rounded-xl">
+                <Bot className="w-5 h-5 text-text-primary" />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">Agent Hub</h1>
-                <p className="text-gray-400 text-sm">AI-powered tools, ready to use</p>
+                <h1 className="text-2xl font-bold text-text-primary">Agent Hub</h1>
+                <p className="text-text-muted text-sm">AI-powered tools, ready to use</p>
               </div>
             </div>
           </div>
@@ -65,7 +65,7 @@ const AgentHub = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {/* Invoice Agent — always present */}
             <AgentCard
-              icon={<FileText className="w-6 h-6 text-brand" />}
+              icon={<FileText className="w-6 h-6 text-accent-pink" />}
               tag="Finance"
               title="Invoice Agent"
               description="Generate professional invoices and send them directly to clients via WhatsApp."
@@ -76,7 +76,7 @@ const AgentHub = () => {
             {agents.map((agent) => (
               <AgentCard
                 key={agent.id}
-                icon={<Zap className="w-6 h-6 text-brand" />}
+                icon={<Zap className="w-6 h-6 text-accent-pink" />}
                 tag={agent.category || 'Agent'}
                 title={agent.name}
                 description={agent.description || 'AI-powered assistant.'}
@@ -87,7 +87,7 @@ const AgentHub = () => {
           </div>
 
           {agents.length === 0 && (
-            <p className="text-center text-gray-400 text-sm mt-12">
+            <p className="text-center text-text-muted text-sm mt-12">
               More agents coming soon.
             </p>
           )}

@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Rubik', system-ui, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
-  color: #111827;
-  background-color: #ffffff;
+  color: #FFF7DF;
+  background-color: #0A0A0F;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -18,8 +18,30 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #0A0A0F;
 }
 
 a {
   text-decoration: inherit;
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0F;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A1A22;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2A2A35;
+}
+
+/* Selection color */
+::selection {
+  background: #FF3CAC;
+  color: #FFF7DF;
 }

@@ -33,53 +33,53 @@ const ProjectForm = ({ initial = EMPTY, onSave, onCancel }) => {
   };
 
   return (
-    <div className="bg-gray-50 border border-gray-200 rounded-xl p-6 space-y-4">
+    <div className="bg-bg-tertiary border border-border-default rounded-xl p-6 space-y-4">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Title *</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Title *</label>
           <input
             value={form.title}
             onChange={(e) => set('title', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Category</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Category</label>
           <input
             value={form.category}
             onChange={(e) => set('category', e.target.value)}
             placeholder="e.g. Mobile & Streaming"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-medium text-gray-600 mb-1">Description</label>
+        <label className="block text-xs font-medium text-text-secondary mb-1">Description</label>
         <textarea
           value={form.description}
           onChange={(e) => set('description', e.target.value)}
           rows={3}
-          className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white resize-none"
+          className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary resize-none"
         />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Tech Stack (comma-separated)</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Tech Stack (comma-separated)</label>
           <input
             value={form.tech}
             onChange={(e) => set('tech', e.target.value)}
             placeholder="React, Node.js, MongoDB"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Icon</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Icon</label>
           <select
             value={form.icon}
             onChange={(e) => set('icon', e.target.value)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           >
             {ICON_OPTIONS.map((i) => <option key={i} value={i}>{i}</option>)}
           </select>
@@ -88,21 +88,21 @@ const ProjectForm = ({ initial = EMPTY, onSave, onCancel }) => {
 
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Live Label</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Live Label</label>
           <input
             value={form.liveLabel}
             onChange={(e) => set('liveLabel', e.target.value)}
             placeholder="Live, Demo on request…"
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           />
         </div>
         <div>
-          <label className="block text-xs font-medium text-gray-600 mb-1">Live URL (optional)</label>
+          <label className="block text-xs font-medium text-text-secondary mb-1">Live URL (optional)</label>
           <input
             value={form.liveUrl || ''}
             onChange={(e) => set('liveUrl', e.target.value)}
             placeholder="https://..."
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand bg-white"
+            className="w-full border border-border-default rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-pink bg-bg-primary"
           />
         </div>
       </div>
@@ -112,21 +112,21 @@ const ProjectForm = ({ initial = EMPTY, onSave, onCancel }) => {
           type="checkbox"
           checked={form.inProgress}
           onChange={(e) => set('inProgress', e.target.checked)}
-          className="rounded border-gray-300 text-brand focus:ring-brand"
+          className="rounded border-border-default text-accent-pink focus:ring-accent-pink"
         />
-        <span className="text-sm text-gray-600">Mark as In Progress</span>
+        <span className="text-sm text-text-secondary">Mark as In Progress</span>
       </label>
 
       <div className="flex gap-3 pt-2">
         <button
           onClick={handleSave}
-          className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition"
+          className="flex items-center gap-2 bg-accent-pink text-text-primary px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition"
         >
           <Check className="w-4 h-4" /> Save Project
         </button>
         <button
           onClick={onCancel}
-          className="flex items-center gap-2 border border-gray-200 text-gray-600 px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-100 transition"
+          className="flex items-center gap-2 border border-border-default text-text-secondary px-4 py-2 rounded-lg text-sm font-medium hover:bg-bg-tertiary transition"
         >
           <X className="w-4 h-4" /> Cancel
         </button>
@@ -144,12 +144,12 @@ const ProjectsManager = () => {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900">Projects</h2>
-          <p className="text-gray-400 text-sm mt-0.5">{projects.length} projects listed on your site</p>
+          <h2 className="text-2xl font-bold text-text-primary">Projects</h2>
+          <p className="text-text-muted text-sm mt-0.5">{projects.length} projects listed on your site</p>
         </div>
         <button
           onClick={() => { setAdding(true); setEditing(null); }}
-          className="flex items-center gap-2 bg-brand text-white px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition"
+          className="flex items-center gap-2 bg-accent-pink text-text-primary px-4 py-2 rounded-lg text-sm font-medium hover:opacity-90 transition"
         >
           <Plus className="w-4 h-4" /> Add Project
         </button>
@@ -174,37 +174,37 @@ const ProjectsManager = () => {
                 onCancel={() => setEditing(null)}
               />
             ) : (
-              <div className="bg-white rounded-xl p-5 shadow-sm border border-gray-100 flex items-center gap-4">
-                <div className="bg-brand-light p-2.5 rounded-xl flex-shrink-0">
-                  <ProjectIcon name={project.icon} className="w-5 h-5 text-brand" />
+              <div className="bg-bg-elevated rounded-xl p-5 shadow-sm border border-border-default flex items-center gap-4">
+                <div className="bg-accent-pink/10 p-2.5 rounded-xl flex-shrink-0">
+                  <ProjectIcon name={project.icon} className="w-5 h-5 text-accent-pink" />
                 </div>
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <h3 className="font-semibold text-gray-900">{project.title}</h3>
+                    <h3 className="font-semibold text-text-primary">{project.title}</h3>
                     {project.inProgress && (
-                      <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-0.5 rounded-full">In Progress</span>
+                      <span className="text-xs bg-accent-lime/10 text-accent-lime px-2 py-0.5 rounded-full">In Progress</span>
                     )}
                     {project.category && (
-                      <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">{project.category}</span>
+                      <span className="text-xs bg-bg-tertiary text-text-muted px-2 py-0.5 rounded-full">{project.category}</span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-500 truncate mt-0.5">{project.description}</p>
+                  <p className="text-sm text-text-muted truncate mt-0.5">{project.description}</p>
                   <div className="flex flex-wrap gap-1 mt-2">
                     {project.tech.map((t) => (
-                      <span key={t} className="text-xs bg-brand-light text-brand px-2 py-0.5 rounded-full">{t}</span>
+                      <span key={t} className="text-xs bg-accent-pink/10 text-accent-pink px-2 py-0.5 rounded-full">{t}</span>
                     ))}
                   </div>
                 </div>
                 <div className="flex items-center gap-1 flex-shrink-0">
                   <button
                     onClick={() => { setEditing(project.id); setAdding(false); }}
-                    className="p-2 text-gray-400 hover:text-brand hover:bg-brand-light rounded-lg transition"
+                    className="p-2 text-text-muted hover:text-accent-pink hover:bg-accent-pink/10 rounded-lg transition"
                   >
                     <Edit2 className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => { if (window.confirm('Delete this project?')) deleteProject(project.id); }}
-                    className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition"
+                    className="p-2 text-text-muted hover:text-accent-pink hover:bg-accent-pink/10 rounded-lg transition"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
