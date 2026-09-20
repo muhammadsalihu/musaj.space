@@ -1,5 +1,5 @@
-import React from 'react';
-import { Code, Server, Brain, ChevronRight, Smartphone } from 'lucide-react';
+import React, { useState } from 'react';
+import { Code, Server, Brain, ChevronRight, Smartphone, Menu, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ProjectsSection from "./ProjectsSection";
 import Footer from './Footer';
@@ -24,6 +24,20 @@ const services = [
 
 const Portfolio = () => {
   const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    setMobileMenuOpen(false);
+  };
+
+  const handleScrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+    setMobileMenuOpen(false);
+  };
 
   return (
     <>
@@ -32,23 +46,47 @@ const Portfolio = () => {
         {/* Navbar */}
         <nav className="sticky top-0 z-50 bg-bg-primary/80 backdrop-blur-md border-b border-border-default">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <span className="flex items-center gap-2.5">
-              <img src="/musaj-logo.svg" alt="Musaj logo" className="w-8 h-8" />
-              <span className="text-xl font-bold tracking-tight font-body">
-                Musaj<span className="text-accent-pink">.space</span>
+            <span className="flex flex-col items-start">
+              <span className="text-2xl font-black tracking-tight font-body leading-none">
+                <span className="bg-gradient-to-r from-accent-pink to-accent-lime bg-clip-text text-transparent">musaj</span><span className="text-text-muted text-lg font-mono">.space</span>
               </span>
             </span>
-            <div className="flex items-center gap-6 text-sm font-medium text-text-secondary">
-              <button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-text-primary transition">Projects</button>
-              <button onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-text-primary transition">Services</button>
+            <div className="hidden sm:flex items-center gap-6 text-sm font-medium text-text-secondary">
+              <button onClick={() => handleScrollTo('projects')} className="hover:text-text-primary transition">Projects</button>
+              <button onClick={() => handleScrollTo('services')} className="hover:text-text-primary transition">Services</button>
               <button
-                onClick={() => navigate('/contact')}
+                onClick={() => handleNavClick('/contact')}
                 className="bg-accent-pink text-white px-5 py-2 rounded-full hover:opacity-90 transition font-semibold"
               >
                 Hire Me
               </button>
             </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="sm:hidden p-2 text-text-secondary hover:text-text-primary transition"
+              aria-label="Toggle menu"
+            >
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
+
+          {/* Mobile menu panel */}
+          {mobileMenuOpen && (
+            <div className="sm:hidden absolute top-full left-0 right-0 bg-bg-primary border-b border-border-default shadow-xl">
+              <div className="px-4 py-6 space-y-4">
+                <button onClick={() => handleScrollTo('projects')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Projects</button>
+                <button onClick={() => handleScrollTo('services')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Services</button>
+                <button
+                  onClick={() => handleNavClick('/contact')}
+                  className="w-full bg-accent-pink text-white px-5 py-3 rounded-full hover:opacity-90 transition font-semibold text-base"
+                >
+                  Hire Me
+                </button>
+              </div>
+            </div>
+          )}
         </nav>
 
         {/* Hero — Chat-style conversation */}

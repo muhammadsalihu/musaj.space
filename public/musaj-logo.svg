@@ -1,14 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" fill="none">
   <defs>
-    <linearGradient id="musajGrad" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+    <linearGradient id="textGrad" x1="0" y1="0" x2="220" y2="0" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#FF3CAC"/>
-      <stop offset="100%" stop-color="#695CFF"/>
+      <stop offset="100%" stop-color="#CCFF00"/>
     </linearGradient>
   </defs>
-  <!-- Background square -->
-  <rect width="256" height="256" rx="48" fill="#0A0A0F"/>
-  <!-- Stylized M mark -->
-  <path d="M64 192V64h24l40 60 40-60h24v128h-24v-80l-40 58-40-58v80z" fill="url(#musajGrad)"/>
-  <!-- Dot accent -->
-  <circle cx="192" cy="192" r="12" fill="#CCFF00"/>
+  <!-- Musaj - main wordmark -->
+  <text x="0" y="80" font-family="Arial Black, Impact, sans-serif" font-size="88" font-weight="900" fill="url(#textGrad)" letter-spacing="-4">Musaj</text>
+  <!-- .space - subtitle below, smaller, muted -->
+  <text x="8" y="108" font-family="IBM Plex Mono, monospace" font-size="20" font-weight="400" fill="#9299A1" letter-spacing="6">.space</text>
 </svg>

@@ -29,11 +29,12 @@ const Footer = () => {
     <footer className="bg-bg-secondary border-t border-border-default text-text-primary">
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2.5 mb-3">
-              <img src="/musaj-logo.svg" alt="Musaj logo" className="w-8 h-8" />
-              <h2 className="text-2xl font-bold">Musaj<span className="text-accent-pink">.space</span></h2>
-            </div>
+            <span className="text-2xl font-black tracking-tight font-body leading-none block mb-3">
+              <span className="bg-gradient-to-r from-accent-pink to-accent-lime bg-clip-text text-transparent">musaj</span><span className="text-text-muted text-lg font-mono">.space</span>
+            </span>
+
             <p className="text-text-secondary text-sm leading-relaxed">
               Fullstack Engineer building AI-powered platforms across Africa and beyond.
             </p>
