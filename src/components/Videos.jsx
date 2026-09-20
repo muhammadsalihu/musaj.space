@@ -34,18 +34,8 @@ const Videos = () => {
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </button>
 
-          <h1 className="text-4xl font-bold text-text-primary mb-2">Videos</h1>
-          <p className="text-text-muted mb-12">
-            Music production, and more from my YouTube channel{' '}
-            <a
-              href="https://www.youtube.com/@musaj.airbills"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-accent-lavender hover:underline"
-            >
-              @musaj.airbills
-            </a>
-          </p>
+          <h1 className="text-4xl font-bold text-text-primary mb-2">Code. Beats. Ships.</h1>
+          <p className="text-text-muted mb-12">Where tech meets creativity — building, shipping, and everything in between.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {VIDEOS.map((video) => (
