@@ -1,5 +1,5 @@
 import React from 'react';
-import { Github, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Github, Linkedin, Twitter, Mail, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
@@ -22,6 +22,7 @@ const Footer = () => {
     { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: 'https://github.com/musaj' },
     { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: 'https://linkedin.com/in/musaj' },
     { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, url: 'https://twitter.com/musaj' },
+    { name: 'Substack', icon: <BookOpen className="w-5 h-5" />, url: 'https://musaj.substack.com' },
     { name: 'Email', icon: <Mail className="w-5 h-5" />, url: 'mailto:contact@musaj.space' },
   ];
 
