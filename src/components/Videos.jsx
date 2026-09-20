@@ -8,24 +8,29 @@ const CHANNELS = [
 ];
 
 const parseYouTubeFeed = (xmlText) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlText, 'text/xml');
-  const entries = doc.querySelectorAll('entry');
-  return Array.from(entries).map((entry) => {
-    const title = entry.querySelector('title')?.textContent || '';
-    const link = entry.querySelector('link')?.getAttribute('href') || '';
-    const published = entry.querySelector('published')?.textContent || '';
-    const videoId = entry.querySelector('yt\\:videoId')?.textContent || '';
-    const mediaGroup = entry.querySelector('media\\:group');
-    const thumbnail = mediaGroup?.querySelector('media\\:thumbnail')?.getAttribute('url') || '';
-    const description = mediaGroup?.querySelector('media\\:description')?.textContent || '';
+  const videos = [];
+  const entryRegex = /<entry>([\s\S]*?)<\/entry>/g;
+  let match;
+  
+  while ((match = entryRegex.exec(xmlText)) !== null) {
+    const entry = match[1];
+    
+    const title = entry.match(/<title>([^<]*)<\/title>/)?.[1] || '';
+    const link = entry.match(/<link rel="alternate" href="([^"]*)"/)?.[1] || '';
+    const published = entry.match(/<published>([^<]*)<\/published>/)?.[1] || '';
+    const videoId = entry.match(/<yt:videoId>([^<]*)<\/yt:videoId>/)?.[1] || '';
+    // Use a reliable thumbnail URL format
+    const thumbUrl = thumbnail || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
+    const description = entry.match(/<media:description>([^<]*)<\/media:description>/)?.[1] || '';
     
     const date = published ? new Date(published).toLocaleDateString('en-US', {
       year: 'numeric', month: 'short', day: 'numeric'
     }) : '';
 
-    return { title, link, date, videoId, thumbnail, description };
-  });
+    videos.push({ title, link, date, videoId, thumbnail: thumbUrl, description });
+  }
+  
+  return videos;
 };
 
 const loadChannelVideos = async (channelId) => {
