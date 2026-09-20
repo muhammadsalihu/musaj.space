@@ -4,8 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
 const CHANNELS = [
-  { id: 'UC8z47QUx32LWCt6xKjMchvQ', name: 'Musaj Prod' },
-  { id: 'UCbPGyV4kjeNVbKY3Bzqryfg', name: 'Musa Musaj' },
+  { id: 'UC8thEnlk8zR64CzWlRMlMew', name: 'Musaj' },
 ];
 
 const parseYouTubeFeed = (xmlText) => {
@@ -128,7 +127,7 @@ const Videos = () => {
 
           <div className="mt-12 text-center">
             <a
-              href="https://www.youtube.com/@musamusaj7469"
+              href="https://www.youtube.com/@musaj.airbills"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-accent-pink hover:opacity-80 transition font-medium"
