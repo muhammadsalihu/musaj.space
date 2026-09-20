@@ -1,58 +1,37 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FileText, ChevronRight, ArrowLeft, Tag, ExternalLink, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
-const SUBSTACK_FEED = 'https://musaj.substack.com/feed.xml';
-const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-
-const parseRSS = (xmlText) => {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(xmlText, 'text/xml');
-  const items = doc.querySelectorAll('item');
-  return Array.from(items).map((item, index) => {
-    const title = item.querySelector('title')?.textContent || '';
-    const description = item.querySelector('description')?.textContent || '';
-    const link = item.querySelector('link')?.textContent || '';
-    const pubDate = item.querySelector('pubDate')?.textContent || '';
-    const content = item.querySelector('content\\:encoded')?.textContent || '';
-    const enclosure = item.querySelector('enclosure');
-    const imageUrl = enclosure?.getAttribute('url') || '';
-    
-    // Parse date
-    const date = pubDate ? new Date(pubDate).toLocaleDateString('en-US', {
-      year: 'numeric', month: 'short', day: 'numeric'
-    }) : '';
-
-    // Strip HTML from description for excerpt
-    const div = document.createElement('div');
-    div.innerHTML = description;
-    const excerpt = div.textContent?.slice(0, 200) || '';
-
-    return {
-      id: index,
-      title,
-      description: excerpt,
-      content,
-      link,
-      date,
-      imageUrl,
-      tags: [],
-    };
-  });
-};
-
-const getSubstackPosts = async () => {
-  try {
-    const response = await fetch(`${CORS_PROXY}${encodeURIComponent(SUBSTACK_FEED)}`);
-    if (!response.ok) throw new Error('Failed to fetch');
-    const xmlText = await response.text();
-    return parseRSS(xmlText);
-  } catch (err) {
-    console.error('Failed to fetch Substack feed:', err);
-    return [];
-  }
-};
+const SUBSTACK_POSTS = [
+  {
+    id: 'substack-nft-gaming',
+    title: 'NFT Gaming',
+    excerpt: 'A new approach towards learning. In recent years, the popularity of non-fungible tokens (NFTs) and blockchain technology has seen a significant increase...',
+    content: 'Full article on Substack',
+    link: 'https://musaj.substack.com/p/nft-gaming',
+    date: 'Mar 9, 2023',
+    tags: ['NFT', 'Blockchain', 'Education'],
+  },
+  {
+    id: 'substack-f1-schools',
+    title: 'F1 in African Schools',
+    excerpt: 'Case Study: Productize Yourself. Formula 1 (F1) is one of the most popular and exciting forms of motorsport in the world. This article explores how we can bring F1 to African schools to foster interest in STEM.',
+    content: 'Full article on Substack',
+    link: 'https://musaj.substack.com/p/f1-in-african-schools',
+    date: 'Mar 9, 2023',
+    tags: ['F1', 'STEM', 'Africa'],
+  },
+  {
+    id: 'substack-coming-soon',
+    title: 'Coming soon',
+    excerpt: "This is Musaj's Substack, a newsletter about Thoughts of lived experiences.",
+    content: 'Full article on Substack',
+    link: 'https://musaj.substack.com/p/coming-soon',
+    date: 'May 18, 2022',
+    tags: ['Introduction'],
+  },
+];
 
 const getLocalPosts = () => {
   try {
@@ -68,40 +47,13 @@ const getLocalPosts = () => {
 const Blog = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);
-  const [substackPosts, setSubstackPosts] = useState([]);
-  const [localPosts, setLocalPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadPosts = async () => {
-      const [substack, local] = await Promise.all([
-        getSubstackPosts(),
-        Promise.resolve(getLocalPosts()),
-      ]);
-      setSubstackPosts(substack);
-      setLocalPosts(local);
-      setLoading(false);
-    };
-    loadPosts();
-  }, []);
-
-  const posts = [...localPosts, ...substackPosts];
+  const localPosts = getLocalPosts();
+  const posts = [...localPosts, ...SUBSTACK_POSTS];
 
   const allTags = [...new Set(posts.flatMap((p) => p.tags || []))];
   const [activeTag, setActiveTag] = useState('All');
 
   const filtered = activeTag === 'All' ? posts : posts.filter((p) => (p.tags || []).includes(activeTag));
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-bg-tertiary flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-10 h-10 border-2 border-accent-pink border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-text-muted text-sm">Loading articles...</p>
-        </div>
-      </div>
-    );
-  }
 
   if (posts.length === 0) {
     return (
@@ -115,7 +67,7 @@ const Blog = () => {
               <ArrowLeft className="w-4 h-4" /> Back to Home
             </button>
             <h1 className="text-4xl font-bold text-text-primary mb-4">
-              Technical <span className="text-accent-pink">Blog</span>
+              Writing
             </h1>
             <p className="text-text-muted mb-20">Thoughts, tutorials, and deep dives.</p>
             <div className="text-center py-24 text-text-muted">
