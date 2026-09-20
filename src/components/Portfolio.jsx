@@ -55,6 +55,7 @@ const Portfolio = () => {
             <div className="hidden sm:flex items-center gap-6 text-sm font-medium text-text-secondary">
               <button onClick={() => handleScrollTo('projects')} className="hover:text-text-primary transition">Projects</button>
               <button onClick={() => handleScrollTo('services')} className="hover:text-text-primary transition">Services</button>
+              <a href="/blog" className="hover:text-text-primary transition">Writing</a>
               <button
                 onClick={() => handleNavClick('/contact')}
                 className="bg-accent-pink text-white px-5 py-2 rounded-full hover:opacity-90 transition font-semibold"
@@ -79,6 +80,7 @@ const Portfolio = () => {
               <div className="px-4 py-6 space-y-4">
                 <button onClick={() => handleScrollTo('projects')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Projects</button>
                 <button onClick={() => handleScrollTo('services')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Services</button>
+                <a href="/blog" className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Writing</a>
                 <button
                   onClick={() => handleNavClick('/contact')}
                   className="w-full bg-accent-pink text-white px-5 py-3 rounded-full hover:opacity-90 transition font-semibold text-base"

@@ -1,9 +1,60 @@
-import React, { useState } from 'react';
-import { FileText, ChevronRight, ArrowLeft, Tag } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { FileText, ChevronRight, ArrowLeft, Tag, ExternalLink, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
 
-const getPublishedPosts = () => {
+const SUBSTACK_FEED = 'https://musaj.substack.com/feed.xml';
+const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
+
+const parseRSS = (xmlText) => {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(xmlText, 'text/xml');
+  const items = doc.querySelectorAll('item');
+  return Array.from(items).map((item, index) => {
+    const title = item.querySelector('title')?.textContent || '';
+    const description = item.querySelector('description')?.textContent || '';
+    const link = item.querySelector('link')?.textContent || '';
+    const pubDate = item.querySelector('pubDate')?.textContent || '';
+    const content = item.querySelector('content\\:encoded')?.textContent || '';
+    const enclosure = item.querySelector('enclosure');
+    const imageUrl = enclosure?.getAttribute('url') || '';
+    
+    // Parse date
+    const date = pubDate ? new Date(pubDate).toLocaleDateString('en-US', {
+      year: 'numeric', month: 'short', day: 'numeric'
+    }) : '';
+
+    // Strip HTML from description for excerpt
+    const div = document.createElement('div');
+    div.innerHTML = description;
+    const excerpt = div.textContent?.slice(0, 200) || '';
+
+    return {
+      id: index,
+      title,
+      description: excerpt,
+      content,
+      link,
+      date,
+      imageUrl,
+      tags: [],
+    };
+  });
+};
+
+const getSubstackPosts = async () => {
+  try {
+    const response = await fetch(`${CORS_PROXY}${encodeURIComponent(SUBSTACK_FEED)}`);
+    if (!response.ok) throw new Error('Failed to fetch');
+    const xmlText = await response.text();
+    return parseRSS(xmlText);
+  } catch (err) {
+    console.error('Failed to fetch Substack feed:', err);
+    return [];
+  }
+};
+
+const getLocalPosts = () => {
   try {
     const stored = localStorage.getItem('musaj_blog');
     if (stored) {
@@ -17,12 +68,40 @@ const getPublishedPosts = () => {
 const Blog = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);
-  const posts = getPublishedPosts();
+  const [substackPosts, setSubstackPosts] = useState([]);
+  const [localPosts, setLocalPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      const [substack, local] = await Promise.all([
+        getSubstackPosts(),
+        Promise.resolve(getLocalPosts()),
+      ]);
+      setSubstackPosts(substack);
+      setLocalPosts(local);
+      setLoading(false);
+    };
+    loadPosts();
+  }, []);
+
+  const posts = [...localPosts, ...substackPosts];
 
   const allTags = [...new Set(posts.flatMap((p) => p.tags || []))];
   const [activeTag, setActiveTag] = useState('All');
 
   const filtered = activeTag === 'All' ? posts : posts.filter((p) => (p.tags || []).includes(activeTag));
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-bg-tertiary flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-10 h-10 border-2 border-accent-pink border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-text-muted text-sm">Loading articles...</p>
+        </div>
+      </div>
+    );
+  }
 
   if (posts.length === 0) {
     return (
@@ -63,9 +142,9 @@ const Blog = () => {
           </button>
 
           <h1 className="text-4xl font-bold text-text-primary mb-2">
-            Technical <span className="text-accent-pink">Blog</span>
+            Writing
           </h1>
-          <p className="text-text-muted mb-8">Thoughts, tutorials, and deep dives.</p>
+          <p className="text-text-muted mb-8">Thoughts, tutorials, and deep dives — also on <a href="https://musaj.substack.com" target="_blank" rel="noopener noreferrer" className="text-accent-lavender hover:underline">Substack</a></p>
 
           {allTags.length > 0 && (
             <div className="flex flex-wrap gap-2 mb-10">
@@ -92,6 +171,11 @@ const Blog = () => {
                 <div className="flex items-center gap-3 mb-3 text-xs text-text-muted">
                   <span>{post.date}</span>
                   {post.readTime && <span>· {post.readTime}</span>}
+                  {post.link && (
+                    <span className="flex items-center gap-1 text-accent-lavender">
+                      <BookOpen className="w-3 h-3" /> Substack
+                    </span>
+                  )}
                 </div>
 
                 <h2 className="text-xl font-bold text-text-primary mb-2">{post.title}</h2>
@@ -100,10 +184,21 @@ const Blog = () => {
                   <p className="text-text-muted mb-4 text-sm leading-relaxed">{post.excerpt}</p>
                 )}
 
-                {expanded === post.id && post.content && (
-                  <div className="text-text-primary mb-4 whitespace-pre-wrap leading-relaxed border-t border-border-default pt-4 text-sm">
-                    {post.content}
-                  </div>
+                {post.link ? (
+                  <a
+                    href={post.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-pink hover:opacity-80 transition"
+                  >
+                    Read on Substack <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                ) : (
+                  expanded === post.id && post.content && (
+                    <div className="text-text-primary mb-4 whitespace-pre-wrap leading-relaxed border-t border-border-default pt-4 text-sm">
+                      {post.content}
+                    </div>
+                  )
                 )}
 
                 <div className="flex items-center justify-between mt-4">
@@ -114,7 +209,7 @@ const Blog = () => {
                       </span>
                     ))}
                   </div>
-                  {post.content && (
+                  {!post.link && post.content && (
                     <button
                       onClick={() => setExpanded(expanded === post.id ? null : post.id)}
                       className="flex items-center gap-1 text-sm font-medium text-accent-pink hover:opacity-80 transition flex-shrink-0 ml-4"
