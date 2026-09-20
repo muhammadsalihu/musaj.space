@@ -8,14 +8,14 @@ const VIDEOS = [
     title: 'Introducing Musaj From Airbills Digital',
     url: 'https://www.youtube.com/shorts/hqSk4ohhvH4',
     date: 'Feb 2026',
-    thumbnail: 'https://img.youtube.com/vi/hqSk4ohhvH4/hqdefault.jpg',
+    thumbnail: 'https://img.youtube.com/vi/hqSk4ohhvH4/maxresdefault.jpg',
     videoId: 'hqSk4ohhvH4',
   },
   {
     title: 'Tributes to Softpreneur',
     url: 'https://www.youtube.com/watch?v=6JwXWBc0SuM',
     date: 'May 2022',
-    thumbnail: 'https://img.youtube.com/vi/6JwXWBc0SuM/hqdefault.jpg',
+    thumbnail: 'https://img.youtube.com/vi/6JwXWBc0SuM/maxresdefault.jpg',
     videoId: '6JwXWBc0SuM',
   },
 ];
@@ -62,6 +62,7 @@ const Videos = () => {
                       src={video.thumbnail}
                       alt={video.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${video.videoId}/hqdefault.jpg`; }}
                     />
                     <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition flex items-center justify-center opacity-0 group-hover:opacity-100">
                       <div className="w-14 h-14 bg-accent-pink rounded-full flex items-center justify-center">
