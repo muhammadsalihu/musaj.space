@@ -34,7 +34,7 @@ const Videos = () => {
             <ArrowLeft className="w-4 h-4" /> Back to Home
           </button>
 
-          <h1 className="text-4xl font-bold text-text-primary mb-2">Code. Beats. Ships.</h1>
+          <h1 className="text-4xl font-bold text-text-primary mb-2">Videos</h1>
           <p className="text-text-muted mb-12">Where tech meets creativity — building, shipping, and everything in between.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
