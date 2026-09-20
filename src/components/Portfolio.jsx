@@ -32,8 +32,11 @@ const Portfolio = () => {
         {/* Navbar */}
         <nav className="sticky top-0 z-50 bg-bg-primary/80 backdrop-blur-md border-b border-border-default">
           <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-            <span className="text-xl font-bold tracking-tight font-body">
-              Musaj<span className="text-accent-pink">.space</span>
+            <span className="flex items-center gap-2.5">
+              <img src="/musaj-logo.svg" alt="Musaj logo" className="w-8 h-8" />
+              <span className="text-xl font-bold tracking-tight font-body">
+                Musaj<span className="text-accent-pink">.space</span>
+              </span>
             </span>
             <div className="flex items-center gap-6 text-sm font-medium text-text-secondary">
               <button onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} className="hover:text-text-primary transition">Projects</button>

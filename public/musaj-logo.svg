@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+  <defs>
+    <linearGradient id="musajGrad" x1="0" y1="0" x2="256" y2="256" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FF3CAC"/>
+      <stop offset="100%" stop-color="#695CFF"/>
+    </linearGradient>
+  </defs>
+  <!-- Background square -->
+  <rect width="256" height="256" rx="48" fill="#0A0A0F"/>
+  <!-- Stylized M mark -->
+  <path d="M64 192V64h24l40 60 40-60h24v128h-24v-80l-40 58-40-58v80z" fill="url(#musajGrad)"/>
+  <!-- Dot accent -->
+  <circle cx="192" cy="192" r="12" fill="#CCFF00"/>
+</svg>
