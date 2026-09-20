@@ -13,7 +13,8 @@ const services = [
   {
     title: "AI Agent Development",
     icon: <Brain className="w-10 h-10 text-accent-pink" />,
-    features: ["Claude API & Azure AI", "Physics & simulation agents", "Agentic pipelines & orchestration"],
+    features: ["Custom AI agents for your workflow", "Hermes AI agent — personalized automation", "Claude API, Azure AI, agentic pipelines"],
+    highlight: "I fucking love Hermes — it's the backbone of how I build. I help people customize Hermes agents to automate their workflows, from coding assistants to research agents that actually ship.",
   },
   {
     title: "Backend Services & Microservices",
@@ -102,12 +103,18 @@ const Portfolio = () => {
               </span>
               
               {/* Massive display type headline */}
-              <h1 className="font-display text-7xl md:text-9xl lg:text-[144px] leading-[0.85] mb-8 text-text-primary tracking-tight">
+              <h1 className="font-display text-6xl md:text-8xl lg:text-[120px] leading-[0.85] mb-8 text-text-primary tracking-tight">
                 Build.<span className="text-accent-pink">Ship.</span><br />Repeat.
               </h1>
               
+              <div className="inline-block bg-bg-elevated border border-border-default rounded-2xl px-6 py-4 mb-12 max-w-xl mx-auto">
+                <p className="text-base text-text-secondary">
+                  <span className="text-accent-lavender font-mono font-medium">Hermes AI agent</span> — customized to your workflow. I fucking love Hermes, and I'll show you why.
+                </p>
+              </div>
+              
               <p className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
-                I build elite digital products — React Native apps, AI agents, and backend platforms — for startups and enterprises across Africa and beyond.
+                I build elite digital products — React Native apps, AI agents, and backend platforms — for startups and enterprises across Africa and beyond. I also help people customize <span className="text-accent-lavender font-medium">Hermes AI agents</span> to automate their workflows — because I fucking love Hermes.
               </p>
               
               {/* CTA Buttons */}
@@ -183,6 +190,11 @@ const Portfolio = () => {
                       </li>
                     ))}
                   </ul>
+                  {service.highlight && (
+                    <p className="mt-4 text-sm text-text-secondary italic border-t border-border-default pt-4">
+                      {service.highlight}
+                    </p>
+                  )}
                   <button
                     onClick={() => navigate('/contact')}
                     className="mt-6 w-full border border-accent-pink text-accent-pink py-2.5 rounded-full text-sm font-semibold hover:bg-accent-pink hover:text-white transition"
