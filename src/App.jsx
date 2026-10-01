@@ -3,6 +3,7 @@ import Portfolio from './components/Portfolio';
 import ProjectsSection from './components/ProjectsSection';
 import Contact from './components/Contact';
 import Blog from './components/Blog';
+import WritingPost from './components/WritingPost';
 import Videos from './components/Videos';
 import AgentHub from './components/AgentHub';
 import AgentChat from './components/AgentChat';
@@ -17,6 +18,7 @@ function App() {
         <Route path="/projects" element={<ProjectsSection />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<WritingPost />} />
 <Route path="/videos" element={<Videos />} />
         <Route path="/agent" element={<AgentHub />} />
         <Route path="/agent/invoice" element={<InvoiceAgent />} />

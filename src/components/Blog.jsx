@@ -1,7 +1,19 @@
 import React, { useState } from 'react';
 import { FileText, ChevronRight, ArrowLeft, Tag, ExternalLink, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { WRITING_POSTS } from '../lib/writing';
 import Footer from './Footer';
+
+// Hermes-agent articles (committed in /content, rendered at /blog/:slug)
+const HERMES_POSTS = WRITING_POSTS.map((p) => ({
+  id: p.slug,
+  title: p.title,
+  excerpt: p.description,
+  link: `/blog/${p.slug}`,
+  date: p.date,
+  readTime: p.readingTime,
+  tags: p.tags,
+}));
 
 const SUBSTACK_POSTS = [
   {
@@ -48,7 +60,7 @@ const Blog = () => {
   const navigate = useNavigate();
   const [expanded, setExpanded] = useState(null);
   const localPosts = getLocalPosts();
-  const posts = [...localPosts, ...SUBSTACK_POSTS];
+  const posts = [...HERMES_POSTS, ...localPosts, ...SUBSTACK_POSTS];
 
   const allTags = [...new Set(posts.flatMap((p) => p.tags || []))];
   const [activeTag, setActiveTag] = useState('All');
@@ -139,11 +151,12 @@ const Blog = () => {
                 {post.link ? (
                   <a
                     href={post.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    onClick={post.link.startsWith('/') ? (e) => { e.preventDefault(); navigate(post.link); } : undefined}
+                    target={post.link.startsWith('/') ? undefined : '_blank'}
+                    rel={post.link.startsWith('/') ? undefined : 'noopener noreferrer'}
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-accent-pink hover:opacity-80 transition"
                   >
-                    Read on Substack <ExternalLink className="w-3.5 h-3.5" />
+                    {post.link.startsWith('/') ? 'Read article' : 'Read on Substack'} <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 ) : (
                   expanded === post.id && post.content && (
