@@ -5,7 +5,10 @@ description: "A real post-mortem: one agentic coding session, 82.59M input token
 keywords: ["AI agent cost", "input tokens", "prompt caching", "Nebius Token Factory", "LLM pricing", "agentic workflow cost", "DeepSeek pricing", "agent engineering"]
 reading_time: "9 min read"
 category: "Engineering"
+hackathon: "Nebius x NVIDIA Devpost Hackathon"
 ---
+
+> This post is part of my build log for the **Nebius × NVIDIA Devpost Hackathon** — I'm building a cloud-agent product on Nebius infrastructure, and these cost post-mortems are straight from the trenches.
 
 A feature shipped last week — a Pro-only Cloud Agent module for an Expo/React Native app, with a NestJS backend behind it: server-side entitlement gating, a push-notification endpoint that was silently dead, a plain-English cron parser, and a WebView host for an embedded agent dashboard. Real feature, real code, all deployed and verified.
 
