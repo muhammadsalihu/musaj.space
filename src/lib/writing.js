@@ -1,6 +1,7 @@
 import whyBuild from '../../content/why-i-build-with-hermes-agents.md?raw';
 import customizing from '../../content/customizing-a-hermes-agent-to-your-workflow.md?raw';
 import shipping from '../../content/shipping-production-apps-with-ai-agents.md?raw';
+import tokenForensics from '../../content/agent-input-token-cost-forensics.md?raw';
 
 // Lazy-hosted article records — body is pulled from the committed markdown files.
 export const WRITING_POSTS = [
@@ -33,6 +34,16 @@ export const WRITING_POSTS = [
     date: 'Oct 2026',
     tags: ['AI Agents', 'Production', 'Lessons'],
     rawBody: shipping,
+  },
+  {
+    slug: 'agent-input-token-cost-forensics',
+    title: "My agent burned $12 of input tokens on one feature. Here's the forensic breakdown.",
+    description: "A real post-mortem: one agentic coding session, 82.59M input tokens, $12 on Nebius. Where the tokens actually went, why prompt caching didn't save us, and the routing changes that cut input cost 10x.",
+    category: 'Engineering',
+    readingTime: '9 min read',
+    date: 'Oct 2026',
+    tags: ['AI Agents', 'Cost Engineering', 'Prompt Caching'],
+    rawBody: tokenForensics,
   },
 ];
 
