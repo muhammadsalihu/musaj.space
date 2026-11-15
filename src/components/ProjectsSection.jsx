@@ -2,6 +2,7 @@ import React from 'react';
 import { ExternalLink, Video, Globe, Lock, ShoppingBag, FlaskConical, Code, Brain, Server, Database, Layers } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Footer from './Footer';
+import { researchUrl, RESEARCH_SITE } from '../lib/research';
 
 const ICON_MAP = { Video, Globe, Lock, ShoppingBag, FlaskConical, Code, Brain, Server, Database, Layers };
 
@@ -66,6 +67,39 @@ const DEFAULT_PROJECTS = [
     category: 'AI / Research',
     inProgress: true,
   },
+  {
+    id: '6',
+    title: 'Tupliq Agent',
+    description: 'Mobile AI agent for freelancers and small businesses — plain-language request in, structured reusable output out, with a provider fallback chain and RevenueCat-backed Pro entitlements.',
+    tech: ['React Native', 'Expo', 'NestJS', 'Prisma', 'RevenueCat'],
+    icon: 'Brain',
+    liveLabel: 'Case study — research.tupliq.com',
+    liveUrl: researchUrl('tupliq-agent'),
+    category: 'Mobile & AI Agent',
+    inProgress: false,
+  },
+  {
+    id: '7',
+    title: 'Tupliq MechEval',
+    description: 'A code-graded evaluation benchmark that scores frontier AI models on real mechanical-engineering physics — deterministic graders, five professional tasks, published raw results.',
+    tech: ['Python', 'Eval Design', 'Mechanical Engineering'],
+    icon: 'FlaskConical',
+    liveLabel: 'Case study — research.tupliq.com',
+    liveUrl: researchUrl('mecheval'),
+    category: 'AI Evaluation · Research',
+    inProgress: false,
+  },
+  {
+    id: '8',
+    title: 'Tupliq Multiphysics',
+    description: 'Tauri (Rust) + React desktop workbench for co-simulation and virtual commissioning: Geometry → Mesh → Solve → Results as a real numbered pipeline.',
+    tech: ['Tauri', 'Rust', 'React', 'three.js'],
+    icon: 'Layers',
+    liveLabel: 'Case study — research.tupliq.com',
+    liveUrl: researchUrl('multiphysics'),
+    category: 'Simulation · Research',
+    inProgress: true,
+  },
 ];
 
 const getProjects = () => {
@@ -100,7 +134,10 @@ const ProjectsSection = () => {
           <h2 className="font-display text-5xl md:text-7xl text-text-primary text-center mb-3 leading-[0.9]">
             Featured <span className="text-accent-pink">Projects</span>
           </h2>
-          <p className="text-text-muted text-center mb-12 text-lg">Real products built for real clients and real users.</p>
+          <p className="text-text-muted text-center mb-12 text-lg">
+            Client platforms, shipped products, and the research artifacts behind them — every one documented end to end at{' '}
+            <a href={RESEARCH_SITE} target="_blank" rel="noopener noreferrer" className="text-accent-pink hover:opacity-80 transition">research.tupliq.com</a>.
+          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (

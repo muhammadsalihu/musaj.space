@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Code, Server, Brain, ChevronRight, Smartphone, Menu, X } from 'lucide-react';
+import { Code, Server, Brain, ChevronRight, Smartphone, Menu, X, ExternalLink } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import ProjectsSection from "./ProjectsSection";
+import ResearchSection from "./ResearchSection";
 import Footer from './Footer';
+import { RESEARCH_SITE } from '../lib/research';
 
 const services = [
   {
@@ -55,6 +57,8 @@ const Portfolio = () => {
             <div className="hidden sm:flex items-center gap-6 text-sm font-medium text-text-secondary">
               <button onClick={() => handleScrollTo('projects')} className="hover:text-text-primary transition">Projects</button>
               <button onClick={() => handleScrollTo('services')} className="hover:text-text-primary transition">Services</button>
+              <button onClick={() => handleScrollTo('research')} className="hover:text-text-primary transition">Research</button>
+              <a href={RESEARCH_SITE} target="_blank" rel="noopener noreferrer" className="hover:text-text-primary transition">Case Studies ↗</a>
               <a href="/blog" className="hover:text-text-primary transition">Writing</a>
               <a href="/videos" className="hover:text-text-primary transition">Videos</a>
               <button
@@ -81,6 +85,8 @@ const Portfolio = () => {
               <div className="px-4 py-6 space-y-4">
                 <button onClick={() => handleScrollTo('projects')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Projects</button>
                 <button onClick={() => handleScrollTo('services')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Services</button>
+                <button onClick={() => handleScrollTo('research')} className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Research</button>
+                <a href={RESEARCH_SITE} target="_blank" rel="noopener noreferrer" className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Case Studies ↗</a>
                 <a href="/blog" className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Writing</a>
                 <a href="/videos" className="block w-full text-left text-text-secondary hover:text-text-primary transition text-base font-medium">Videos</a>
                 <button
@@ -103,7 +109,7 @@ const Portfolio = () => {
             <div className="max-w-4xl mx-auto text-center">
               {/* Badge */}
               <span className="inline-block bg-accent-lime/10 text-accent-lime text-xs font-semibold px-3 py-1 rounded-full mb-6 tracking-wide uppercase font-mono">
-                Fullstack Engineer & AI Builder
+                Fullstack Engineer · AI Builder · Researcher
               </span>
               
               {/* Massive display type headline */}
@@ -118,7 +124,7 @@ const Portfolio = () => {
               </div>
               
               <p className="text-lg md:text-xl text-text-secondary mb-12 max-w-2xl mx-auto">
-                I build elite digital products — React Native apps, AI agents, and backend platforms — for startups and enterprises across Africa and beyond. I also help people customize <span className="text-accent-lavender font-medium">Hermes AI agents</span> to automate their workflows — because I fucking love Hermes.
+                I build elite digital products — React Native apps, AI agents, and backend platforms — for startups and enterprises across Africa and beyond. I also help people customize <span className="text-accent-lavender font-medium">Hermes AI agents</span> to automate their workflows — because I fucking love Hermes. The benchmarks and engineering case studies behind that work are published at <a href={RESEARCH_SITE} target="_blank" rel="noopener noreferrer" className="text-accent-pink font-medium hover:opacity-80 transition">research.tupliq.com</a>.
               </p>
               
               {/* CTA Buttons */}
@@ -135,6 +141,14 @@ const Portfolio = () => {
                 >
                   View Projects
                 </button>
+                <a
+                  href={RESEARCH_SITE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-accent-lime text-accent-lime px-8 py-4 rounded-full font-semibold hover:bg-accent-lime hover:text-bg-primary transition text-base inline-flex items-center gap-2"
+                >
+                  Read the Research <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
 
               {/* Chat-style conversation snippet — the Junior vibe */}
@@ -173,6 +187,9 @@ const Portfolio = () => {
         <div id="projects" className="bg-bg-secondary py-20">
           <ProjectsSection />
         </div>
+
+        {/* Research & case studies */}
+        <ResearchSection />
 
         {/* Services */}
         <section id="services" className="py-20 bg-bg-primary">

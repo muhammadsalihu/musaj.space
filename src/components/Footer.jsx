@@ -1,6 +1,7 @@
 import React from 'react';
 import { Github, Linkedin, Twitter, Mail, BookOpen } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { RESEARCH_SITE } from '../lib/research';
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -12,6 +13,14 @@ const Footer = () => {
     { name: 'Contact', path: '/contact' },
   ];
 
+  const researchLinks = [
+    { name: 'Research hub', url: RESEARCH_SITE },
+    { name: 'MechEval — AI evaluation benchmark', url: `${RESEARCH_SITE}/#mecheval` },
+    { name: 'Tupliq Agent — case study', url: `${RESEARCH_SITE}/#tupliq-agent` },
+    { name: 'Multiphysics — co-simulation', url: `${RESEARCH_SITE}/#multiphysics` },
+    { name: 'Launchpad — agent tooling', url: `${RESEARCH_SITE}/#launchpad` },
+  ];
+
   const serviceLinks = [
     'React Native Mobile Development',
     'AI Agent Development',
@@ -19,7 +28,7 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: 'https://github.com/musaj' },
+    { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: 'https://github.com/muhammadsalihu' },
     { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: 'https://linkedin.com/in/musaj' },
     { name: 'Twitter', icon: <Twitter className="w-5 h-5" />, url: 'https://twitter.com/musaj' },
     { name: 'Substack', icon: <BookOpen className="w-5 h-5" />, url: 'https://musaj.substack.com' },
@@ -29,7 +38,7 @@ const Footer = () => {
   return (
     <footer className="bg-bg-secondary border-t border-border-default text-text-primary">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
 
           <div className="md:col-span-1">
             <span className="text-2xl font-black tracking-tight font-body leading-none block mb-3">
@@ -52,6 +61,24 @@ const Footer = () => {
                   >
                     {link.name}
                   </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="md:col-span-1">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-text-muted mb-4">Research</h3>
+            <ul className="space-y-2">
+              {researchLinks.map((link, i) => (
+                <li key={i}>
+                  <a
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-text-secondary hover:text-accent-pink transition text-sm"
+                  >
+                    {link.name}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -85,8 +112,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border-default mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center text-sm text-text-muted">
+        <div className="border-t border-border-default mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-sm text-text-muted">
           <p>© {currentYear} Musaj.space. All rights reserved.</p>
+          <p>
+            <a href={RESEARCH_SITE} target="_blank" rel="noopener noreferrer" className="hover:text-accent-pink transition">research.tupliq.com</a>
+            <span className="mx-2">·</span>
+            <a href="https://www.tupliq.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent-pink transition">tupliq.com</a>
+          </p>
         </div>
       </div>
     </footer>
